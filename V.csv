@@ -1,4 +1,5 @@
-Date,         Length
-"2015-04-02", 61
-"2016-08-31", 71
-"2018-05-08", 77
+"Date",       "Length", "Source"
+"2015-04-02", 61, "https://fyi.org.nz/request/2548-gender-reassignment-surgery-waiting-list-size-and-status"
+"2016-08-31", 71, "https://fyi.org.nz/request/4305-transgender-grs-waitlist-progress"
+"2017-01-13", 71, "https://www.stuff.co.nz/national/health/88374973/Gender-reassignment-decades-long-wait-list-horrendous"
+"2018-05-08", 77, "https://fyi.org.nz/request/7586-grs-waitlist-update"
