@@ -25,7 +25,12 @@ ui <- navbarPage("Gender Reassignment Surgery", collapsible = TRUE,
              numericInput("vagmin", label=NULL, value=0)),
             checkboxInput("vagmaxc", "Set graph maximum", value=FALSE),
             conditionalPanel("input.vagmaxc",
-             numericInput("vagmax", label=NULL, value=NA))
+             numericInput("vagmax", label=NULL, value=NA)),
+            checkboxInput("vagdatesc", "Set graph date range", value=FALSE),
+            conditionalPanel("input.vagdatesc",
+             dateRangeInput("vagdates", label=NULL,
+                            start="2015-04-02", end=NULL,
+                            format="dd/mm/yyyy"))
        ),
        mainPanel(
           tabsetPanel(
@@ -58,7 +63,12 @@ ui <- navbarPage("Gender Reassignment Surgery", collapsible = TRUE,
              numericInput("phalmin", label=NULL, value=0)),
             checkboxInput("phalmaxc", "Set graph maximum", value=FALSE),
             conditionalPanel("input.phalmaxc",
-             numericInput("phalmax", label=NULL, value=NA))
+             numericInput("phalmax", label=NULL, value=NA)),
+            checkboxInput("phaldatesc", "Set graph date range", value=FALSE),
+            conditionalPanel("input.phaldatesc",
+             dateRangeInput("phaldates", label=NULL,
+                            start="2015-04-02", end=NULL,
+                            format="dd/mm/yyyy"))
        ),
        mainPanel(
           tabsetPanel(
@@ -200,6 +210,9 @@ server <- function(input, output) {
       ifelse(input$vagmaxc, input$vagmax, NA)
     )
     v.p + scale_y_continuous(limits=glim) -> v.p
+    if (input$vagdatesc) {
+      v.p + coord_cartesian(xlim = input$vagdates) -> v.p
+    }
     v.p
   })
   
@@ -233,6 +246,9 @@ server <- function(input, output) {
       ifelse(input$phalmaxc, input$phalmax, NA)
     )
     p.p + scale_y_continuous(limits=glim) -> p.p
+    if (input$phaldatesc) {
+      p.p + coord_cartesian(xlim = input$phaldates) -> p.p
+    }
     p.p
   })
   
